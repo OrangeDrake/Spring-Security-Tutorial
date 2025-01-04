@@ -19,8 +19,6 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(unique = true, nullable = false)
-    private String username;
-    @Column(unique = true, nullable = false)
     private String email;
     @Column(nullable = false)
     private String password;
@@ -32,8 +30,7 @@ public class User implements UserDetails {
     private boolean enabled;
 
     //constructor for creating an unverified user
-    public User(String username, String email, String password) {
-        this.username = username;
+    public User(String email, String password) {
         this.email = email;
         this.password = password;
     }
@@ -65,5 +62,9 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return enabled;
+    }
+
+    public String getUsername() {
+        return email;
     }
 }
